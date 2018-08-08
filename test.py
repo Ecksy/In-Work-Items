@@ -10,6 +10,6 @@ country = input("Enter your contry: ")
 
 address = input("Enter your address: ")
 
-print("Thank you, we have stolen all of your personal information.")
+print("Thank you, we have now all of your personal information.")
 
 print(str(username) + ",", str(age) + ",", str(gender) + ",", str(country) + ",", str(address))
