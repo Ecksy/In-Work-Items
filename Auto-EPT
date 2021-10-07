@@ -1,0 +1,32 @@
+To automate:
+
+What is the client name?
+
+Eco "What is client name?" $clientname
+
+What are the names of the domain name and IP file > to variables for use. So...
+
+Echo "What is the domain file" $domainsfile
+Echo "what is the IP list file" $ipaddressfile
+
+batchiplocator.sh &ipaddressfile
+
+echo "Continue? Ctrl C to quit"
+
+batchdig.sh $domainsfile
+
+batchwhois.sh $domainsfile
+
+batchdnsrecon.sh $domainsfile
+
+batchshodan.sh $domainsfile
+
+nmap -Pn -n -vv -p1-12000 --max-retries 0 --reason --source-port 53 -sS -oA $clientname-nmap-synScan -iL $ipaddressfile
+
+nmap --max-retries 0 -Pn -n -vv --reason --top-ports 100 --open --source-port 53 -sU -iL $ipaddressfile -oA $clientname-nmap-UDPScan
+
+ctfr.py -d $domainsfile
+
+theharvester -d $domainsfile -b all -l 50
+
+sublist3r -d $domainsfile
